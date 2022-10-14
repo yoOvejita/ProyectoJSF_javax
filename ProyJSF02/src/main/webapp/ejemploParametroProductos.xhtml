@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+  <title></title>
+</head>
+
+	<h:body>
+	<h:form>
+		<h1>Tabla de productos disponibles</h1>
+		<h:dataTable var="producto" value="#{parametrosManagedBean.productos}" border="1">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				#{producto.id}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+				#{producto.nombre}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Precio</f:facet>
+				#{producto.precio}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Imagen</f:facet>
+				<h:graphicImage library="imagenes" width="150" name="#{producto.imagen}"></h:graphicImage>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Cantidad</f:facet>
+				#{producto.cantidad}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Sub total</f:facet>
+				#{producto.precio * producto.cantidad}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Enlaces</f:facet>
+				<h:commandLink value="Ver detalles del producto" action="#{parametrosManagedBean.recibir2(producto)}"></h:commandLink>
+			</h:column>
+		</h:dataTable>
+		</h:form>
+	</h:body>
+
+</html>

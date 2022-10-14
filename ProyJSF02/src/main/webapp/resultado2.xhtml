@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+  <title></title>
+</head>
+	<h:body>
+		<h1>Detalles del producto #{parametrosManagedBean.producto.nombre}</h1>
+		<table border="1">
+			<tr>
+				<td>ID</td>
+				<td>#{parametrosManagedBean.producto.id}</td>
+			</tr>
+			<tr>
+				<td>Nombre</td>
+				<td>#{parametrosManagedBean.producto.nombre}</td>
+			</tr>
+			<tr>
+				<td>Precio</td>
+				<td>#{parametrosManagedBean.producto.precio}</td>
+			</tr>
+			<tr>
+				<td>Imagen</td>
+				<td>
+					<h:graphicImage library="imagenes" name="#{parametrosManagedBean.producto.imagen}"></h:graphicImage>
+				</td>
+			</tr>
+			<tr>
+				<td>Cantidad</td>
+				<td>#{parametrosManagedBean.producto.cantidad}</td>
+			</tr>
+			<tr>
+				<td>Sub total</td>
+				<td>#{parametrosManagedBean.producto.precio * parametrosManagedBean.producto.cantidad}</td>
+			</tr>
+		</table>
+	</h:body>
+</html>
