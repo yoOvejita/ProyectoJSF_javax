@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+  <title></title>
+</head>
+	<h:body>
+		<h1>Formulario de registro</h1>
+		<h:form>
+			<table>
+				<tr>
+					<td>Usuario:</td>
+					<td><h:inputText value="#{cuentaManagedBean.cuenta.usuario}"></h:inputText></td>
+				</tr>
+				<tr>
+					<td>Contraseña:</td>
+					<td><h:inputSecret value="#{cuentaManagedBean.cuenta.password}"></h:inputSecret></td>
+				</tr>
+				<tr>
+					<td>Breve descripción:</td>
+					<td>
+						<h:inputTextarea cols="22" rows="5" value="#{cuentaManagedBean.cuenta.descripcion}"></h:inputTextarea>
+					</td>
+				</tr>
+				<tr>
+					<td>¿Está trabajando?:</td>
+					<td>
+						<h:selectBooleanCheckbox value="#{cuentaManagedBean.cuenta.trabajando}"></h:selectBooleanCheckbox>
+					</td>
+				</tr>
+				<tr>
+					<td>Lenguajes de programación:</td>
+					<td>
+						<h:selectManyCheckbox value="#{cuentaManagedBean.cuenta.lenguajesprog}">
+							<f:selectItem itemLabel="Lenguaje C#" itemValue="l01"></f:selectItem><br/>
+							<f:selectItem itemLabel="Lenguaje Java" itemValue="l02"></f:selectItem><br/>
+							<f:selectItem itemLabel="Lenguaje JavaScript" itemValue="l03"></f:selectItem><br/>
+							<f:selectItem itemLabel="Lenguaje C++" itemValue="l04"></f:selectItem><br/>
+						</h:selectManyCheckbox>
+					</td>
+				</tr>
+				<tr>
+					<td>Rol que desempeña:</td>
+					<td>
+						<h:selectOneMenu value="#{cuentaManagedBean.cuenta.rol}">
+						<f:selectItem itemLabel="No corresponde" itemValue="r00"></f:selectItem>
+							<f:selectItem itemLabel="Jefe de departamento" itemValue="r01"></f:selectItem>
+							<f:selectItem itemLabel="Desarrollador" itemValue="r02"></f:selectItem>
+							<f:selectItem itemLabel="Auxiliar de sistemas" itemValue="r03"></f:selectItem>
+							<f:selectItem itemLabel="Consultor externo" itemValue="r04"></f:selectItem>
+						</h:selectOneMenu>
+					</td>
+				</tr>
+				<tr>
+					<td>Género:</td>
+					<td>
+						<h:selectOneRadio value="#{cuentaManagedBean.cuenta.genero}">
+							<f:selectItem itemLabel="Masculino" itemValue="M"></f:selectItem>
+							<f:selectItem itemLabel="Femenino" itemValue="F"></f:selectItem>
+						</h:selectOneRadio>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><h:commandButton value="Registrar" action="#{cuentaManagedBean.registrar()}"></h:commandButton></td>
+				</tr>
+			</table>
+		</h:form>
+	</h:body>
+</html>

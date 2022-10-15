@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+  <title></title>
+</head>
+	<h:body>
+	<h1>Usuario registrado con éxito</h1>
+	<table>
+		<tr>
+			<td>Usuario</td>
+			<td>#{cuentaManagedBean.cuenta.usuario}</td>
+		</tr>
+		<tr>
+			<td>Contraseña</td>
+			<td>#{cuentaManagedBean.cuenta.password}</td>
+		</tr>
+		<tr>
+			<td>Descripción</td>
+			<td>#{cuentaManagedBean.cuenta.descripcion}</td>
+		</tr>
+		<tr>
+			<td>Está trabajando</td>
+			<td>#{cuentaManagedBean.cuenta.trabajando}</td>
+		</tr>
+		<tr>
+			<td>Lenguajes de programación (id)</td>
+			<td>
+				<ui:repeat var="lenprog" value="#{cuentaManagedBean.cuenta.lenguajesprog}">
+					#{lenprog} <br/>========== <br/>
+				</ui:repeat>
+			</td>
+		</tr>
+		<tr>
+			<td>Rol (id)</td>
+			<td>#{cuentaManagedBean.cuenta.rol}</td>
+		</tr>
+		<tr>
+			<td>Genero (id)</td>
+			<td>#{cuentaManagedBean.cuenta.genero}</td>
+		</tr>
+	</table>
+	</h:body>
+</html>
