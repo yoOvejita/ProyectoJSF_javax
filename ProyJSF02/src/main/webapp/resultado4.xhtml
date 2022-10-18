@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <title>Resultado PrimeFaces</title>
+</h:head>
+	<h:body>
+		<h:form>
+			<table border="1">
+				<tr>
+					<td>Usuario:</td>
+					<td>#{cuentaPFManagedBean.cuenta.usuario}</td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td>#{cuentaPFManagedBean.cuenta.password}</td>
+				</tr>
+				<tr>
+					<td>Descripción:</td>
+					<td>#{cuentaPFManagedBean.cuenta.descripcion}</td>
+				</tr>
+				<tr>
+					<td>Trabajando:</td>
+					<td>#{cuentaPFManagedBean.cuenta.trabajando}</td>
+				</tr>
+				<tr>
+					<td>Lenguajes de programación:</td>
+					<td>
+						<ui:repeat var="leng" value="#{cuentaPFManagedBean.cuenta.lenguajesprog}">
+							#{leng} <br/>
+						</ui:repeat>
+					</td>
+				</tr>
+				<tr>
+					<td>Rol:</td>
+					<td>#{cuentaPFManagedBean.cuenta.rol}</td>
+				</tr>
+				<tr>
+					<td>Genero:</td>
+					<td>#{cuentaPFManagedBean.cuenta.genero}</td>
+				</tr>
+				<tr>
+					<td>Fecha de nacimiento:</td>
+					<td>
+						<h:outputText value="#{cuentaPFManagedBean.cuenta.fechaNac}">
+							<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+						</h:outputText>
+					</td>
+				</tr>
+				<tr>
+					<td>Detalles:</td>
+					<td>
+						<h:outputText value="#{cuentaPFManagedBean.cuenta.detalles}" escape="false"></h:outputText>
+					</td>
+				</tr>
+				<tr>
+					<td>Firma:</td>
+					<td>
+						<p:outputPanel id="panelfirma">
+							<p:signature value="#{cuentaPFManagedBean.cuenta.firma}"
+								style="height:300px;width:600px" readonly="true"
+								rendered="#{not empty cuentaPFManagedBean.cuenta.firma}"
+								color="#ff0000" backgroundColor="#000000"
+							/>
+						</p:outputPanel>
+					</td>
+				</tr>
+			</table>
+		</h:form>
+	</h:body>
+</html>

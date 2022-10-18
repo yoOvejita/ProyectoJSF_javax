@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <title>Registro de cuenta PrimeFaces</title>
+</h:head>
+	<h:body>
+		<h1>Crear una cuenta (PrimeFaces)</h1>
+		<h:form>
+			<table>
+				<tr>
+					<td>Usuario:</td>
+					<td><h:inputText value="#{cuentaPFManagedBean.cuenta.usuario}"></h:inputText></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><h:inputSecret value="#{cuentaPFManagedBean.cuenta.password}"></h:inputSecret></td>
+				</tr>
+				<tr>
+					<td>Descripción:</td>
+					<td><h:inputTextarea value="#{cuentaPFManagedBean.cuenta.descripcion}"></h:inputTextarea></td>
+				</tr>
+				<tr>
+					<td>Trabajando:</td>
+					<td><h:selectBooleanCheckbox value="#{cuentaPFManagedBean.cuenta.trabajando}"></h:selectBooleanCheckbox></td>
+				</tr>
+				<tr>
+					<td>Lenguajes de programación:</td>
+					<td>
+						<h:selectManyCheckbox value="#{cuentaPFManagedBean.cuenta.lenguajesprog}">
+							<f:selectItem itemLabel="TypeScript" itemValue="l01"></f:selectItem>
+							<f:selectItem itemLabel="Python" itemValue="l02"></f:selectItem>
+							<f:selectItem itemLabel="C#" itemValue="l03"></f:selectItem>
+							<f:selectItem itemLabel="Java" itemValue="l04"></f:selectItem>
+							<f:selectItem itemLabel="R" itemValue="l05"></f:selectItem>
+						</h:selectManyCheckbox>
+					</td>
+				</tr>
+				<tr>
+					<td>Rol:</td>
+					<td>
+						<h:selectOneMenu value="#{cuentaPFManagedBean.cuenta.rol}">
+							<f:selectItem itemLabel="N/A" itemValue="r00"></f:selectItem>
+							<f:selectItem itemLabel="Jefe de departamento" itemValue="r01"></f:selectItem>
+							<f:selectItem itemLabel="Deswarrollador" itemValue="r02"></f:selectItem>
+							<f:selectItem itemLabel="QA" itemValue="r03"></f:selectItem>
+							<f:selectItem itemLabel="Auxiliar de sistemas" itemValue="r04"></f:selectItem>
+						</h:selectOneMenu>
+					</td>
+				</tr>
+				<tr>
+					<td>Genero:</td>
+					<td>
+						<h:selectOneRadio value="#{cuentaPFManagedBean.cuenta.genero}">
+							<f:selectItem itemLabel="Masculino" itemValue="M"></f:selectItem>
+							<f:selectItem itemLabel="Femenino" itemValue="F"></f:selectItem>
+						</h:selectOneRadio>
+					</td>
+				</tr>
+				<tr>
+					<td>Fecha de nacimiento:</td>
+					<td>
+						<p:calendar id="cal" mode="popup" pattern="dd/MM/yyyy" value="#{cuentaPFManagedBean.cuenta.fechaNac}" />
+					</td>
+				</tr>
+				<tr>
+					<td>Detalles:</td>
+					<td>
+						<p:textEditor value="#{cuentaPFManagedBean.cuenta.detalles}" height="500" widgetVar="editor"/>
+					</td>
+				</tr>
+				<tr>
+					<td>Firma:</td>
+					<td>
+						<p:signature style="height:300px;width:600px;"
+							value="#{cuentaPFManagedBean.cuenta.firma}"
+							widgetVar="sig" guideline="true" required="true" />
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><h:commandButton action="#{cuentaPFManagedBean.Registrar()}" value="Registrar"></h:commandButton></td>
+				</tr>
+			</table>
+		</h:form>
+	</h:body>
+</html>
