@@ -12,13 +12,14 @@ import javax.servlet.http.Part;
 
 public class HerramientaDeArchivos {
 	private final int limite_maximo = 1024000;
+	private final String extensiones_permitidas = "gif|jpg|jpeg|png";
 	public String realizarSubida(Part archivoSubir) {
 		String nombreArchivoGuardado = "nada.jpg";
 		try {
 			if(archivoSubir.getSize() > 0) {
 				//Efectivamente el archivo exste y tiene contenido
 				String nombreDelArchivoSubido = getNombreDeArchivo(archivoSubir);
-				if(verificarExtensionDeArchivo(nombreDelArchivoSubido){
+				if(verificarExtensionDeArchivo(nombreDelArchivoSubido)){
 					if(archivoSubir.getSize() > limite_maximo)
 						FacesContext.getCurrentInstance().addMessage(null, 
 								new FacesMessage(FacesMessage.SEVERITY_INFO, "El tamaño del archivo es muy grande",""));
@@ -51,26 +52,40 @@ public class HerramientaDeArchivos {
 							fos.close();
 							nombreArchivoGuardado = cuevoNombreArchivoGuardado; 
 						}catch(IOException ee) {
+							System.out.println("Error IO");
 							nombreArchivoGuardado = "nada.jpg";
 						}
 					}
 				}
 					
 			}else {
+				System.out.println("Error porquye el archivo no tiene tamaño > 0");
 					nombreArchivoGuardado = "nada.jpg";
 			}
 		
 		}catch(Exception e) {
+			System.out.println("Error general");
+			System.out.println(e.getMessage());
 			nombreArchivoGuardado = "nada.jpg";
 		}
 		return nombreArchivoGuardado;
 	}
-	private boolean verificarExtensionDeArchivo(String nombreDelArchivoSubido) {
-		// TODO Auto-generated method stub
+	private boolean verificarExtensionDeArchivo(String nombreDelArchivoSubido) { // foto.jpg 
+		if(nombreDelArchivoSubido.length() > 0) {
+			String[] elementos = nombreDelArchivoSubido.split("\\.");
+			if(elementos.length > 0) {
+				String extension = elementos[elementos.length - 1]; //0:[foto] 1:[jpg]
+				return extensiones_permitidas.contains(extension);
+			}
+		}
 		return false;
 	}
 	private String getNombreDeArchivo(Part archivoSubir) {
-		// TODO Auto-generated method stub
+		for(String cd : archivoSubir.getHeader("content-disposition").split(";"))
+			if(cd.trim().startsWith("filename")) {
+				String filename = cd.substring(cd.indexOf("=")+1).trim().replace("\"","");// \imgs\foto.jpg
+				return filename.substring(filename.lastIndexOf('/')+ 1).substring(filename.lastIndexOf('\\')+1);// foto.jpg
+			}
 		return null;
 	}
 }
