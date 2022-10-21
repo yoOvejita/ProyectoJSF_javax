@@ -24,8 +24,89 @@
 				</td>
 				<td><h:message for="txtusuario"></h:message></td>
 			</tr>
+			<tr>
+				<td>Contraseña:</td>
+				<td>
+					<h:inputSecret value="#{validacionManagedBean.cuenta.password}"
+						required="true"
+						requiredMessage="Por favor, instroduzca una contraseña"
+						id="txtpassword">
+						<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,16})"></f:validateRegex>
+					</h:inputSecret>
+				</td>
+				<td><h:message for="txtpassword"></h:message></td>
+			</tr>
+			<tr>
+				<td>Edad:</td>
+				<td>
+					<h:inputText value="#{validacionManagedBean.cuenta.edad}"
+						required="true"
+						requiredMessage="Por favor, introduzca su edad"
+						id="txtedad">
+						<f:validateLongRange minimum="18" maximum="80"></f:validateLongRange>
+					</h:inputText>
+				</td>
+				<td><h:message for="txtedad"></h:message></td>
+			</tr>
+			<tr>
+				<td>eMail:</td>
+				<td>
+					<h:inputText value="#{validacionManagedBean.cuenta.email}"
+						required="true"
+						requiredMessage="Por favor, instroduzca un correo"
+						id="txtemail">
+						<f:validateRegex pattern="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></f:validateRegex>
+					</h:inputText>
+				</td>
+				<td><h:message for="txtemail"></h:message></td>
+			</tr>
+			<tr>
+				<td>Pagina:</td>
+				<td>
+					<h:inputText value="#{validacionManagedBean.cuenta.pagina}"
+						required="true"
+						requiredMessage="Por favor, instroduzca una pagina"
+						id="txtpagina">
+						<f:validateRegex pattern="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?"></f:validateRegex>
+					</h:inputText>
+				</td>
+				<td><h:message for="txtpagina"></h:message></td>
+			</tr>
+			<tr>
+			<td></td>
+			<td><h:commandButton value="Crear usuario" action="#{validacionManagedBean.Guardar()}"></h:commandButton></td>
+			</tr>
 		</table>
 	</h:form>
+	<h:messages/>
 </h:body>
 
 </html>
+
+<!-- 
+Clase caracter:
+
+[abc] -> a ó b ó c
+[^ñxw] -> cualquier cosa menos ñ ó x ó w
+[a-r] -> rango de la a hasta r
+[a-zA-Z] -> tolera todo el alfabeto mayuscula o minuscula.
+[a-d[m-p]] -> union de a hasta d ó de m hasta p
+[a-z&&[def]] -> intersección: d, e ó f
+... etc
+
+Cuantificadores:
+x? -> x ocurre una vez o ninguna
+x+ -> x ocurre una o más veces
+x* -> x ocurre cero o más veces
+x{n} -> x ocurre n veces
+x{n,m} -> x ocurre mínimo n veces, y máximo m veces.
+esc.
+
+Metacaracteres:
+. -> puedes ser cualquier caracter
+d -> representa cualquier dígito
+D -> representa cualquier NO dígito
+s -> representa cualquier espaci en blanco
+etc.
+
+ -->
