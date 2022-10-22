@@ -66,6 +66,15 @@
 					<td></td>
 					<td><h:commandButton value="Registrar" action="#{cuentaManagedBean.registrar()}"></h:commandButton></td>
 				</tr>
+				<tr>
+					<td>Ejemplo independiente de parámetros</td>
+					<td>
+						<h:outputFormat value="El valor 1 es: {0} y el valor 2 es: {1}">
+							<f:param value="texto 1"/>
+							<f:param value="texto 2"/>
+						</h:outputFormat>
+					</td>
+				</tr>
 			</table>
 		</h:form>
 	</h:body>
