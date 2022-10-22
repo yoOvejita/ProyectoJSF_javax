@@ -4,6 +4,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.pepe.Modelos.Cuenta;
+import com.pepe.anotaciones.Tiempo;
 
 @SessionScoped
 @ManagedBean(name="cuentaManagedBean")
@@ -21,6 +22,7 @@ public class CuentaManagedBean {
 	public void setCuenta(Cuenta cuenta) {
 		this.cuenta = cuenta;
 	}
+	@Tiempo
 	public String registrar() {
 		return "resultado3";
 	}
