@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <title><ui:insert name="title">Ejemplo Validador personalizado</ui:insert></title>
+</h:head>
+
+<h:body>
+	<h1>Formulario usando validador propio</h1>
+	<h:form  prependId="false">
+		<table>
+			<tr>
+				<td>Usuario:</td>
+				<td>
+					<h:inputText value="#{validacionManagedBean.cuenta.usuario}"
+						required="true"
+						requiredMessage="Por favor, instroduzca un nombre de usuario"
+						id="txtusuario">
+						<f:validateLength minimum="3" maximum="9"></f:validateLength>
+						<f:validator validatorId="usuarioValidador"></f:validator>
+					</h:inputText>
+				</td>
+				<td><h:message for="txtusuario"></h:message></td>
+			</tr>
+			<tr>
+				<td>Contraseña:</td>
+				<td>
+					<h:inputSecret value="#{validacionManagedBean.cuenta.password}"
+						required="true"
+						requiredMessage="Por favor, instroduzca una contraseña"
+						id="txtpassword">
+						<f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,16})"></f:validateRegex>
+					</h:inputSecret>
+				</td>
+				<td><h:message for="txtpassword"></h:message></td>
+			</tr>
+			<tr>
+				<td>Edad:</td>
+				<td>
+					<h:inputText value="#{validacionManagedBean.cuenta.edad}"
+						required="true"
+						requiredMessage="Por favor, introduzca su edad"
+						id="txtedad">
+						<f:validateLongRange minimum="18" maximum="80"></f:validateLongRange>
+					</h:inputText>
+				</td>
+				<td><h:message for="txtedad"></h:message></td>
+			</tr>
+			<tr>
+				<td>eMail:</td>
+				<td>
+					<h:inputText value="#{validacionManagedBean.cuenta.email}"
+						required="true"
+						requiredMessage="Por favor, instroduzca un correo"
+						id="txtemail">
+						<f:validateRegex pattern="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></f:validateRegex>
+					</h:inputText>
+				</td>
+				<td><h:message for="txtemail"></h:message></td>
+			</tr>
+			<tr>
+				<td>Pagina:</td>
+				<td>
+					<h:inputText value="#{validacionManagedBean.cuenta.pagina}"
+						required="true"
+						requiredMessage="Por favor, instroduzca una pagina"
+						id="txtpagina">
+						<f:validateRegex pattern="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?"></f:validateRegex>
+					</h:inputText>
+				</td>
+				<td><h:message for="txtpagina"></h:message></td>
+			</tr>
+			<tr>
+			<td></td>
+			<td><h:commandButton value="Crear usuario" action="#{validacionManagedBean.Guardar()}"></h:commandButton></td>
+			</tr>
+		</table>
+	</h:form>
+</h:body>
+
+</html>
